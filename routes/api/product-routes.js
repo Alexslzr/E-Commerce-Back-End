@@ -11,11 +11,10 @@ router.get('/', async(req, res) => {
     const product = await Product.findAll({
       include: [{model: Tag, through: "ProductTag"},{model: Category}]
     })
-    res(200).json(product)
+    res.status(200).json(product)
   } catch (err){
-    res(400).json(err)
+    res.status(400).json(err)
   }
-
 });
 
 // get one product
@@ -29,9 +28,9 @@ router.get('/:id', async (req, res) => {
       },
       include: [{model: Tag, through: "ProductTag"},{model: Category}]
     })
-    res(200).json(product)
+    res.status(200).json(product)
   } catch(err){
-    res(400).json(err)
+    res.status(400).json(err)
   }
 });
 
@@ -118,11 +117,11 @@ router.delete('/:id', async (req, res) => {
       }
     })
     if(!product){
-      res(404).json({message: "No Product found with this id"})
+      res.status(404).json({message: "No Product found with this id"})
     }
-    res(200).json(product)
+    res.status(200).json(product)
   } catch(err){
-    res(400).json(err)
+    res.status(400).json(err)
   }
 });
 
